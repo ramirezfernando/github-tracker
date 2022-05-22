@@ -1,8 +1,10 @@
-const validUserReducer = (state = false, action) => {
+const validUserReducer = (state = '', action) => {
     switch(action.type) {
-        // use this for onClick function in components/search.js
         case 'VALID':
-            return !state;
+            return {
+                ...state,
+                username: action.payload
+            };
         default:
             return state;
     }
