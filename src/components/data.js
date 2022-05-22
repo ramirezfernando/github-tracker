@@ -1,10 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
-function data() {
-    
+function Data() {
+    const onSearch = useSelector(state => state.onSearch);
   return (
-    <div>data</div>
+    <div>
+        {onSearch ? <h1 style={{color:'white'}}>Hi</h1> : ''}
+    </div>
+
   )
 }
 
-export default data
+export default Data;

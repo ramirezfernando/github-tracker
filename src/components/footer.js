@@ -2,7 +2,7 @@ import React from 'react'
 import Link from '@mui/material/Link';
 import { colors } from './colors';
 
-function footer() {
+function Footer() {
   return (
     <div style={footerStyles}>
     Made with ❤️ by  <Link rel="noopener noreferrer" target="_blank" underline="hover" color="inherit" href="https://github.com/ramirezfernando">ramirezfernando</Link>.
@@ -14,4 +14,4 @@ const footerStyles = {
     fontFamily: 'Arial',
     fontSize: 20,
     };
-export default footer
+export default Footer

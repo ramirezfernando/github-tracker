@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, About, Search, Footer, Divider } from '../components/index';
+import { Title, About, Search, Footer, Divider, Data } from '../components/index';
 
 function Main() {
   return (
@@ -9,6 +9,7 @@ function Main() {
         <Search />
         <Footer />
         <Divider />
+        <Data />
     </div>
   )
 }
