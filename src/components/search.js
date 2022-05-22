@@ -8,16 +8,14 @@ function Search() {
   return (
     <div>
       <form>
-      <TextField style={searchStyles}
-      sx={{ input: { color: colors.white } }}
-
-        id="search-bar"
-        className="text"
-        label="Search user"
-        variant="outlined"
-        placeholder="Search..."
-        size="small"
-      />
+        <TextField 
+          hiddenLabel
+          style={searchStyles}
+          sx={{ input: { color: colors.white } }}
+          variant="outlined"
+          placeholder="Find user"
+          size="small"
+        />
       <IconButton type="submit" aria-label="search">
         <SearchIcon style={{ fill: colors.white }} />
       </IconButton>
