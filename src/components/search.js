@@ -4,7 +4,17 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@mui/material/TextField";
 
+import { useSelector, useDispatch } from 'react-redux';
+
 function Search() {
+  // Redux
+  const search = useSelector((state) => state.onSearch);
+  const dispatch = useDispatch();
+  const searchUser = () => {
+    dispatch({type:'SEARCHING'});
+  };
+  
+
   return (
     <div>
       <form>
@@ -16,7 +26,7 @@ function Search() {
           placeholder="Find user"
           size="small"
         />
-      <IconButton type="submit" aria-label="search">
+      <IconButton onClick={searchUser} aria-label="search">
         <SearchIcon style={{ fill: colors.white }} />
       </IconButton>
     </form>
