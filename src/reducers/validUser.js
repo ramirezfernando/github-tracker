@@ -1,13 +1,20 @@
-const validUserReducer = (state = '', action) => {
-    switch(action.type) {
-        case 'VALID':
-            return {
-                ...state,
-                username: action.payload
-            };
-        default:
-            return state;
-    }
-}
+import { createSlice } from '@reduxjs/toolkit'
 
-export default validUserReducer;
+export const userSlice = createSlice({
+    name: "user",
+    initialState: {
+        user: null,
+    },
+    reducers: {
+        search: (state, action) => {
+            state.user = action.payload;
+        },
+
+    }
+})
+
+export const { search } = userSlice.actions;
+
+export const searchUser = (state) => state.user.user;
+
+export default userSlice.reducer;

@@ -5,22 +5,47 @@ import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@mui/material/TextField";
 import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import Data from './data';
-
+import { search } from '../reducers/validUser'
+import { Divider, Footer } from '.';
+import axios from 'axios';
 function Search() {
-  // Redux
-  const search = useSelector((state) => state.onSearch);
-  const dispatch = useDispatch();
-  const searchUser = () => {
-    dispatch({type:'SEARCHING'});
-    console.log(userRef.current.value)
-  };
-  const userRef = useRef('') //creating a refernce for TextField Component
-
-  
+  // Get input from search
   const [username, setUsername] = useState("");
+  // Axios request states 
+  const [userData, setUserData] = useState("");
+  const [userRepos, setUserRepos] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  const dispatch = useDispatch();
+  const handleSearch = () => {
+    dispatch(search({
+      name: username
+  }));
+  // Fetch basic user data
+  setLoading(true)
+
+  axios.get('https://api.github.com/users/' + username)
+      .then(res => {
+          console.log(res.data)
+          setUserData(res.data)
+      }).catch(err => {
+          console.log(err)
+          setError(err);
+      })
+
+  axios.get('https://api.github.com/users/' + username + '/repos')
+      .then(res => {
+          console.log(res.data)
+          setUserRepos(res.data)
+      }).catch(err => {
+          console.log(err)
+          setError(err);
+      })
+
+  setLoading(false)
+    
+  };
 
   return (
     <div>
@@ -30,17 +55,23 @@ function Search() {
           style={searchStyles}
           sx={{ input: { color: colors.white } }}
           variant="outlined"
-          placeholder="Find user"
+          placeholder="Search user..."
           size="small"
-          inputRef={userRef}   //connecting inputRef property of TextField to the valueRef
-
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
-      <IconButton onClick={searchUser} aria-label="search">
+      <IconButton onClick={handleSearch} aria-label="search">
         <SearchIcon style={{ fill: colors.white }} />
       </IconButton>
+      <Footer />
+      <Divider />
     </form>
 
-
+    <div style={dataContainer}>
+        <div>
+            { userData ? <p>{userData.bio}</p> : null }
+        </div>
+    </div>
 
   </div>
   )
@@ -53,5 +84,13 @@ const searchStyles = {
   borderColor: colors.white,
   backgroundColor: colors.light_grey,
 
+};
+const dataContainer = {
+  color: colors.white,
+  fontFamily: 'Arial',
+  fontSize: 40,
+  marginTop: 30,
+  borderColor: colors.white,
+  backgroundColor: colors.light_grey,
 };
 export default Search;

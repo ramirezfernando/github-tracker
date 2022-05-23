@@ -3,7 +3,7 @@ import { colors } from './colors';
 
 function Title() {
   return (
-    <h1 style={titleStyles}>GitHub Profiles</h1>
+    <h1 style={titleStyles}>GitHub Tracker</h1>
   )
 }
 const titleStyles = {
