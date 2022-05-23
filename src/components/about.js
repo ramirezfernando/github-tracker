@@ -1,6 +1,5 @@
 import React from 'react'
 import { colors } from './colors';
-import Link from '@mui/material/Link';
 
 function About() {
   return (

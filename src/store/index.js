@@ -1,6 +1,3 @@
-import { createStore } from 'redux';
-import allReducers from '../reducers'
-
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from "../reducers/validUser"
 /*

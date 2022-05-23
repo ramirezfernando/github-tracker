@@ -10,13 +10,12 @@ import { Link } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import { useRef, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { search } from '../reducers/validUser'
 import { Divider, Footer } from '.';
 import axios from 'axios';
-import { spacing } from '@mui/system';
-import reportWebVitals from '../reportWebVitals';
+
 
 function Search() {
   let config = {'Authorization': process.env.REACT_APP_API_KEY};
@@ -26,7 +25,7 @@ function Search() {
   // Axios request states 
   const [userData, setUserData] = useState("");
   const [userRepos, setUserRepos] = useState("");
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ function Search() {
   }));
   // Fetch basic user data
   setError(false)
-  setLoading(true)
+  //setLoading(true)
   
   axios.get('https://api.github.com/users/' + username, {headers: config})
       .then(res => {
@@ -52,7 +51,7 @@ function Search() {
           setError(err);
       })
 
-  setLoading(false)
+  //setLoading(false)
     
   };
   
