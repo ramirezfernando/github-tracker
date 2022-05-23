@@ -40,19 +40,15 @@ function Search() {
   
   axios.get('https://api.github.com/users/' + username, {headers: config})
       .then(res => {
-          console.log(res.data)
           setUserData(res.data)
       }).catch(err => {
-          console.log(err)
           setError(err);
       })
 
   axios.get('https://api.github.com/users/' + username + '/repos', {headers: config})
       .then(res => {
-          console.log(res.data)
           setUserRepos(res.data)
       }).catch(err => {
-          console.log(err)
           setError(err);
       })
 
